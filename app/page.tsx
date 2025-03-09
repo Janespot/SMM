@@ -61,9 +61,34 @@ export default function Home() {
     }
   };
 
-  console.log(Object.values(followerData.location));
+  const insights = [
+    {
+      name: "Accounts Reached",
+      val: "126,768",
+      av: 35,
+      active: "+27"
+    },
+    {
+      name: "Accounts Engaged",
+      val: "23,890",
+      av: 78,
+      active: "-1.37"
+    },
+    {
+      name: "Followers",
+      val: "+124",
+      av: 56,
+      active: "+2.15"
+    },
+    {
+      name: "Profile Viewers",
+      val: "+1,009",
+      av: 37,
+      active: "-3.15"
+    }
+  ];
 
   return (
-    <App mediaData={mediaData} followerData={followerData} />
+    <App mediaData={mediaData} followerData={followerData} insights={insights} />
   )
 }
