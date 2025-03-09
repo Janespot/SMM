@@ -11,6 +11,7 @@
   "dependencies": {
     "@mantine/core": "^7.17.1",
     "@mantine/hooks": "^7.17.1",
+    "@meinefinsternis/react-horizontal-date-picker": "^1.0.1",
     "@next/font": "^14.2.15",
     "next": "15.2.1",
     "react": "^19.0.0",

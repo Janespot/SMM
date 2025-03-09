@@ -4,6 +4,7 @@ import { AppShell, Badge, Burger, Card, CardSection, Flex, NavLink, Progress, Se
 import { useDisclosure } from '@mantine/hooks';
 import Followers from './Followers';
 import PostInsights from './PostInsights';
+import Schedule from './Schedule';
 
 interface MediaData {
     media: string,
@@ -82,8 +83,8 @@ function App(
                     ))}
                 </Flex>
 
-                <Flex>
-                    <Card w={"70%"}>
+                <Flex gap="xl">
+                    <Card w={"70%"} radius="lg" withBorder shadow='lg'>
                         <Text>Revenue</Text>
                         <Flex
                             justify="space-between"
@@ -100,22 +101,8 @@ function App(
                     <Followers locationData={locationData} />
                 </Flex>
                 
-                <Flex>
-                    <Flex 
-                        w={"70%"}
-                        direction="column"
-                    >
-                        <Card>
-                            <Flex justify="space-between">
-                                <Text>Post Schedule</Text>
-                                <Select></Select>
-                            </Flex>
-                            Dates
-                        </Card>
-                        <Card>
-                            <Text>02:00 PM</Text>
-                        </Card>
-                    </Flex>
+                <Flex gap="xl">
+                    <Schedule />
 
                     <PostInsights insights={insights} />
                 </Flex>

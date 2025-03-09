@@ -16,20 +16,20 @@ const PostInsights = ({ insights } : { insights: any }) => {
                         <Table.Tr>
                             <Table.Td>
                                 <Flex direction="column" justify="flex-end">
-                                    <Text size='sm'>{i.name}</Text>
+                                    <Text>{i.name}</Text>
                                     <Text fw={700}>{i.val}</Text>
                                 </Flex>
                             </Table.Td>
 
                             <Table.Td>
                                 <Flex direction="column">
-                                    <Text size='sm'>Average</Text>
+                                    <Text>Average</Text>
                                     <Text>{i.av}%</Text>                                            </Flex>
                             </Table.Td>
 
                             <Table.Td>
                                 <Flex direction="column" align="flex-start">
-                                    <Text size='sm'>Active Post</Text>
+                                    <Text>Active Post</Text>
                                     <Text c={color}>{i.active}</Text>
                                 </Flex>
                             </Table.Td>
