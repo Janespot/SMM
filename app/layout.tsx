@@ -9,8 +9,8 @@ const dongle = Dongle({
 });
 
 export const metadata = {
-  title: 'My Mantine app',
-  description: 'I have followed setup instructions carefully',
+  title: 'SMM',
+  description: 'Social Media Mangement',
 };
 
 export default function RootLayout({
