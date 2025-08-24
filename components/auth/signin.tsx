@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import Image from 'next/image'
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { signInWithApple, signInWithGoogle } from "@/lib/auth/signup";
 
 export default function Signin() {
     return (
@@ -28,7 +29,7 @@ export default function Signin() {
                             </div>
 
                             <div className="w-full flex justify-between">
-                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }}>
+                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }} onClick={signInWithApple}>
                                     <Image
                                         src={'/apple.png'}
                                         alt="Hero"
@@ -38,7 +39,7 @@ export default function Signin() {
                                     />
                                     Apple
                                 </Button>
-                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }}>
+                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }} onClick={signInWithGoogle}>
                                     <Image
                                         src={'/google.png'}
                                         alt="Hero"

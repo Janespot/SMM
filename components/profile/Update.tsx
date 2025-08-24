@@ -10,15 +10,32 @@ import { Textarea } from "../ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Accordion } from "@mantine/core";
+import { useState } from "react";
 
 export default function UpdateProfile() {
-    const handleAvatarChange = (e: any) => {
-    const file = e.target.files[0];
-    if (file) {
-      const img:any = document.querySelector('img');
-      img.src = URL.createObjectURL(file);
-    }
-  }
+    const [socialLinks, setSocialLinks] = useState([
+        { platform: "", url: "" },
+    ]);
+
+    // Add new empty set
+    const handleAdd = () => {
+        setSocialLinks([...socialLinks, { platform: "", url: "" }]);
+    };
+
+    const handleRemove = (indexToRemove: number) => {
+        setSocialLinks(socialLinks.filter((_, i) => i !== indexToRemove));
+    };
+
+    const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("hello");
+        const file = e.target.files?.[0];
+        if (file) {
+            const previewUrl = URL.createObjectURL(file);
+            // Update state to preview image
+            console.log("Selected file:", file);
+            // Example: setPreview(previewUrl);
+        }
+    };
 
     return (
         <section className="flex justify-center" style={{ alignItems: "center", minHeight: "calc(100vh)" }}>
@@ -35,8 +52,11 @@ export default function UpdateProfile() {
                                     <div className="flex flex-col gap-4">
                                         <div className="flex flex-col">                                
                                             <Label className="text-2xl" htmlFor="profile">Profile Photo</Label>
-                                            <div className="relative w-24 h-24 group">                                
-                                                <img src="/smm.jpg" alt="Profile Photo" className="w-full h-full rounded-full object-cover border-2 border-gray-300" />
+                                            <div className="relative w-24 h-24 group">
+                                                <label htmlFor="avatarUpload" className="cursor-pointer block w-full h-full">   
+                                                    <img src="/smm.jpg" alt="Profile Photo" className="w-full h-full rounded-full object-cover border-2 border-gray-300 absolute top-0" />
+                                                    <span className="absolute bottom-0 flex justify-center w-full items-center text-5xl font-bold p-0" style={{ backgroundColor: "rgba(255, 255, 255, .8)" }}>+</span>
+                                                </label>
                                                 <Input className="hidden" type="file" id="avatarUpload" name="profile" accept="image/*" onChange={(e) => handleAvatarChange(e)} />
                                             </div>
                                         </div>
@@ -87,25 +107,49 @@ export default function UpdateProfile() {
                             <Accordion.Item value="media">
                                 <Accordion.Control><span className="font-semibold">Social Media Links</span></Accordion.Control>
                                 <Accordion.Panel>
-                                    <div className="flex flex-col gap-4">
-                                        <div className="flex flex-col">
-                                            <Label className="text-2xl" htmlFor="sm">Social Media Account</Label>
-                                            <Select>
-                                                <SelectTrigger className="w-full">
-                                                    <SelectValue placeholder="Social Media" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem  className="text-2xl" value="ig">Instagram</SelectItem>
-                                                    <SelectItem  className="text-2xl" value="fb">Facebook</SelectItem>
-                                                    <SelectItem  className="text-2xl" value="tt">Tiktok</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
-                                        
-                                        <div className="flex flex-col">
-                                            <Label className="text-2xl" htmlFor="url[]">Link</Label>
-                                            <Input className="rounded-md" type="text" name="url[]" placeholder="https://www.example.com" />
-                                        </div>
+                                    <div className="space-y-6">
+                                        {socialLinks.map((_: any, index: number) => (
+                                            <div key={index} className="flex flex-col gap-4">
+                                                <div className="flex flex-col">
+                                                    <Label className="text-2xl" htmlFor="sm">Social Media Account</Label>
+                                                    <Select>
+                                                        <SelectTrigger className="w-full">
+                                                            <SelectValue placeholder="Social Media" />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+                                                            <SelectItem  className="text-2xl" value="ig">Instagram</SelectItem>
+                                                            <SelectItem  className="text-2xl" value="fb">Facebook</SelectItem>
+                                                            <SelectItem  className="text-2xl" value="tt">Tiktok</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                </div>
+                                                
+                                                <div className="flex flex-col">
+                                                    <Label className="text-2xl" htmlFor="url[]">Link</Label>
+                                                    <Input className="rounded-md" type="text" name="url[]" placeholder="https://www.example.com" />
+                                                </div>
+                                             
+                                                {/* Remove Button */}
+                                                {socialLinks.length > 1 && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleRemove(index)}
+                                                        className="text-sm border-2 text-[#990033] border-[#990033] rounded-md"
+                                                    >
+                                                        Remove
+                                                    </button>
+                                                )}
+                                            </div>
+                                        ))}
+
+                                        {/* Add Button */}
+                                        <button
+                                            type="button"
+                                            onClick={handleAdd}
+                                            className="px-4 py-1 bg-[#0057b7] text-white rounded-md hover:bg-blue-800"
+                                        >
+                                            + Add Account
+                                        </button>
                                     </div>
                                 </Accordion.Panel>
                             </Accordion.Item>

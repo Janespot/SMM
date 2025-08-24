@@ -2,7 +2,7 @@
 'use client'
 
 import { useState } from 'react'
-import { signUp } from '@/lib/auth/signup'  // Import your signup function
+import { signInWithApple, signInWithGoogle, signUp } from '@/lib/auth/signup'  // Import your signup function
 import { useRouter } from 'next/navigation'
 import { Card } from "../ui/card";
 import { Label } from "@/components/ui/label"
@@ -21,7 +21,6 @@ export default function Signup() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         console.log({"email": email, "password": password, "name": name });
-        return;
         
         e.preventDefault()
         setLoading(true)
@@ -30,7 +29,7 @@ export default function Signup() {
         try {
             await signUp(email, password, name);
             alert('Signup successful! Check your email for confirmation.');
-            router.push('/signin'); // or wherever you want after signup
+            router.push('/profile/updateprofile'); // or wherever you want after signup
         } catch (err: any) {
             console.error(err)
             setError(err.message || 'Something went wrong.')
@@ -87,7 +86,7 @@ export default function Signup() {
                             </div>
 
                             <div className="w-full flex justify-between">
-                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }}>
+                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }} onClick={signInWithApple}>
                                     <Image
                                         src={'/apple.png'}
                                         alt="Hero"
@@ -97,7 +96,7 @@ export default function Signup() {
                                     />
                                     Apple
                                 </Button>
-                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }}>
+                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }} onClick={signInWithGoogle}>
                                     <Image
                                         src={'/google.png'}
                                         alt="Hero"
