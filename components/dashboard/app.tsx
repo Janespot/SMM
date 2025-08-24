@@ -14,7 +14,7 @@ interface MediaData {
     more: string
 };
 
-function App(
+export default function App(
     { 
         mediaData, 
         followerData,
@@ -110,5 +110,3 @@ function App(
 
     );
 }
-
-export default App;
