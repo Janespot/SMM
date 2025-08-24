@@ -2,9 +2,9 @@
 
 import { AppShell, Badge, Burger, Card, CardSection, Flex, NavLink, Progress, Select, Table, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import Followers from './Followers';
-import PostInsights from './PostInsights';
-import Schedule from './Schedule';
+import Followers from '../../components/dashboard/Followers';
+import PostInsights from '../../components/dashboard/PostInsights';
+import Schedule from '../../components/dashboard/Schedule';
 
 interface MediaData {
     media: string,

@@ -1,4 +1,4 @@
-import App from "@/app/dashboard/app";
+import App from "@/components/dashboard/app";
 
 export default function Home() {
   const mediaData = [
