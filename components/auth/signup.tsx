@@ -40,28 +40,28 @@ export default function Signup() {
     }
     
     return (
-        <section className="flex justify-center" style={{ alignItems: "center", minHeight: "calc(100vh - 60px)", background: "#e6f2ff" }}>
-            <Card className="container mx-auto flex px-2 py-2 m-5 flex-row h-[500px]">
+        <section className="flex justify-center" style={{ alignItems: "center", minHeight: "calc(100vh)", backgroundColor: "hsl(0, 0%, 8%)" }}>
+            <Card className="container mx-auto flex px-2 py-2 m-5 flex-row h-[500px] border-none">
                 <div className="w-full md:w-1/2 flex flex-col justify-between">
                     {/* <Link href="/" className="font-semibold text-lg hidden md:block" style={{ color: "#0057b7" }}>GLEC</Link> */}
 
                     <div className="p-2 md:pt-5">
-                        <h2 className="text-center mb-10 font-semibold text-xl" style={{ color: "#0057b7" }}>Create Account</h2>
+                        <h2 className="text-center mb-10 font-semibold text-4xl" style={{ color: "#0057b7" }}>Create Account</h2>
                         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                            <div className="flex flex-col gap-2">
-                                <Label htmlFor="name">Full Name</Label>
+                            <div className="flex flex-col">
+                                <Label className="text-2xl" htmlFor="name">Full Name</Label>
                                 <Input
                                     className="rounded-xl" 
                                     type="text" 
                                     name="name" 
                                     value={name}
                                     onChange={e => setName(e.target.value)}
-                                    placeholder="Enter Full Name" 
+                                    placeholder="Enter Full Name"
                                 />
                             </div>
 
-                            <div className="flex flex-col gap-2">
-                                <Label htmlFor="email">Email</Label>
+                            <div className="flex flex-col">
+                                <Label className="text-2xl" htmlFor="email">Email</Label>
                                 <Input 
                                     className="rounded-xl" 
                                     type="email" 
@@ -72,8 +72,8 @@ export default function Signup() {
                                 />
                             </div>
 
-                            <div className="flex flex-col gap-2">
-                                <Label htmlFor="password">Password</Label>
+                            <div className="flex flex-col">
+                                <Label className="text-2xl" htmlFor="password">Password</Label>
                                 <Input 
                                     className="rounded-xl" 
                                     type="password" 
@@ -113,7 +113,7 @@ export default function Signup() {
                         </form>
                     </div>
 
-                    <p className="text-xs p-2">
+                    <p className="p-2">
                         Already Have an Account? 
                         &nbsp;<Link href="/signin" style={{ color: "#0057b7", textDecoration: "underline" }}>Sign In</Link>
                     </p>
@@ -121,7 +121,7 @@ export default function Signup() {
 
                 <div 
                     className="w-1/2 rounded-lg hidden md:block" 
-                    style={{ backgroundImage: "url('/top2.jpg')", backgroundSize: "cover" }}
+                    style={{ backgroundImage: "url('/smm.png')", backgroundSize: "cover" }}
                 >
                 </div>
             </Card>
