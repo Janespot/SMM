@@ -1,0 +1,114 @@
+:root {
+    --green: hsl(75, 94%, 57%);
+    --white: hsl(0, 0%, 100%);
+    --grey-700: hsl(0, 0%, 20%);
+    --grey-800: hsl(0, 0%, 12%);
+    --grey-900: hsl(0, 0%, 8%);
+}
+
+@font-face {
+    font-family: Inter-Bold;
+    src: url(/assets/fonts/static/Inter-Bold.ttf)
+}
+
+@font-face {
+    font-family: Inter-Regular;
+    src: url(/assets/fonts/static/Inter-Regular.ttf)
+}
+
+@font-face {
+    font-family: Inter-SemiBold;
+    src: url(/assets/fonts/static/Inter-SemiBold.ttf)
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Inter-Regular";
+}
+
+body {
+    background-color: var(--grey-900);
+    color: var(--white);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: 100%;
+    margin-bottom: .5rem;
+    max-width: 370px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: var(--grey-800);
+}
+
+img {
+    width: 90px;
+    height: auto;
+    border-radius: 999px;
+}
+
+h1 {
+    font-family: "Inter-SemiBold";
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: .75rem;
+    margin-top: 0;
+    color: var(--green);
+}
+
+p {
+    font-size: .8rem;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+ul li {
+    width: 100%;
+    list-style-type: none;
+    text-align: center;
+    margin-top: .7rem;
+    border-radius: 5px;
+    background-color: var(--grey-700);
+    font-size: .8rem;
+}
+
+ul a {
+    font-family: "Inter-SemiBold";
+    text-decoration: none;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    padding: .8rem;
+}
+
+li:active, li:hover {
+     background-color: var(--green);
+}
+
+li:active a, li:hover a {
+    color: var(--grey-900);
+ }
+
+.attribution { 
+    font-size: 11px; 
+    text-align: center; 
+}
+
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
