@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body>
+      <body style={{ backgroundColor: "hsl(0, 0%, 8%)" }}>
         <MantineProvider
           theme={{
             fontFamily: dongle.style.fontFamily,

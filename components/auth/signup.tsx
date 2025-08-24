@@ -40,13 +40,11 @@ export default function Signup() {
     }
     
     return (
-        <section className="flex justify-center" style={{ alignItems: "center", minHeight: "calc(100vh)", backgroundColor: "hsl(0, 0%, 8%)" }}>
+        <section className="flex justify-center" style={{ alignItems: "center", minHeight: "calc(100vh)" }}>
             <Card className="container mx-auto flex px-2 py-2 m-5 flex-row h-[500px] border-none">
                 <div className="w-full md:w-1/2 flex flex-col justify-between">
-                    {/* <Link href="/" className="font-semibold text-lg hidden md:block" style={{ color: "#0057b7" }}>GLEC</Link> */}
-
                     <div className="p-2 md:pt-5">
-                        <h2 className="text-center mb-10 font-semibold text-4xl" style={{ color: "#0057b7" }}>Create Account</h2>
+                        <h2 className="text-center mb-10 font-semibold text-4xl" style={{ color: "hsl(0, 0%, 8%)" }}>Create Account</h2>
                         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                             <div className="flex flex-col">
                                 <Label className="text-2xl" htmlFor="name">Full Name</Label>
@@ -85,7 +83,7 @@ export default function Signup() {
                             </div>
 
                             <div>
-                                <Input className="rounded-xl" style={{ background: "#0057b7", color: "#fff", cursor: "pointer" }} type="submit" value={loading ? 'Signing up...' : 'Sign Up'} />
+                                <Input className="rounded-xl" style={{ background: "hsl(0, 0%, 8%)", color: "#fff", cursor: "pointer" }} type="submit" value={loading ? 'Signing up...' : 'Sign Up'} />
                             </div>
 
                             <div className="w-full flex justify-between">
@@ -115,13 +113,13 @@ export default function Signup() {
 
                     <p className="p-2">
                         Already Have an Account? 
-                        &nbsp;<Link href="/signin" style={{ color: "#0057b7", textDecoration: "underline" }}>Sign In</Link>
+                        &nbsp;<Link href="/signin" style={{ color: "hsl(0, 0%, 8%)", textDecoration: "underline" }}>Sign In</Link>
                     </p>
                 </div>
 
                 <div 
                     className="w-1/2 rounded-lg hidden md:block" 
-                    style={{ backgroundImage: "url('/smm.png')", backgroundSize: "cover" }}
+                    style={{ backgroundImage: "url('/smm.jpg')", backgroundSize: "cover" }}
                 >
                 </div>
             </Card>
