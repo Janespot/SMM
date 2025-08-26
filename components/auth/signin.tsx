@@ -6,12 +6,12 @@ import { Input } from "@/components/ui/input"
 import Image from 'next/image'
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { signInWithApple, signInWithGoogle } from "@/lib/auth/signup";
+import { signInWithGoogle } from "@/lib/auth/signup";
 
 export default function Signin() {
     return (
         <section className="flex justify-center" style={{ alignItems: "center", minHeight: "calc(100vh)" }}>
-            <Card className="container mx-auto flex px-2 py-2 m-5 flex-row h-[500px]">
+            <Card className="container mx-auto flex px-2 py-2 m-5 flex-row">
                 <div className="w-full md:w-1/2 flex flex-col justify-between">
                     <div className="p-2 md:pt-5">
                         <h2 className="text-center mb-10 font-semibold text-4xl" style={{ color: "hsl(0, 0%, 8%)" }}>Sign In</h2>
@@ -30,18 +30,10 @@ export default function Signin() {
                                 <Input className="rounded-xl" style={{ background: "hsl(0, 0%, 8%)", color: "#fff", cursor: "pointer" }} type="submit" value="Sign In" />
                             </div>
 
+                            <span className="text-center">or</span>
+
                             <div className="w-full flex justify-between">
-                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }} onClick={signInWithApple}>
-                                    <Image
-                                        src={'/apple.png'}
-                                        alt="Hero"
-                                        width={20}
-                                        height={20}
-                                        className="rounded-xl"
-                                    />
-                                    Apple
-                                </Button>
-                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }} onClick={signInWithGoogle}>
+                                <Button variant="outline" className="rounded-xl" style={{ width: '100%', cursor: "pointer" }} onClick={signInWithGoogle}>
                                     <Image
                                         src={'/google.png'}
                                         alt="Hero"
@@ -49,7 +41,7 @@ export default function Signin() {
                                         height={20}
                                         className="rounded-xl"
                                     />
-                                    Google
+                                    Sign In With Google
                                 </Button>
                             </div>
                         </div>

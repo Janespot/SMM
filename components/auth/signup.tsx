@@ -2,7 +2,7 @@
 'use client'
 
 import { useState } from 'react'
-import { signInWithApple, signInWithGoogle, signUp } from '@/lib/auth/signup'  // Import your signup function
+import { signInWithGoogle, signUp } from '@/lib/auth/signup'  // Import your signup function
 import { useRouter } from 'next/navigation'
 import { Card } from "../ui/card";
 import { Label } from "@/components/ui/label"
@@ -29,7 +29,7 @@ export default function Signup() {
         try {
             await signUp(email, password, name);
             alert('Signup successful! Check your email for confirmation.');
-            router.push('/profile/updateprofile'); // or wherever you want after signup
+            router.push('/'); // or wherever you want after signup
         } catch (err: any) {
             console.error(err)
             setError(err.message || 'Something went wrong.')
@@ -40,7 +40,7 @@ export default function Signup() {
     
     return (
         <section className="flex justify-center" style={{ alignItems: "center", minHeight: "calc(100vh)" }}>
-            <Card className="container mx-auto flex px-2 py-2 m-5 flex-row h-[500px] border-none">
+            <Card className="container mx-auto flex px-2 py-2 m-5 flex-row border-none">
                 <div className="w-full md:w-1/2 flex flex-col justify-between">
                     <div className="p-2 md:pt-5">
                         <h2 className="text-center mb-10 font-semibold text-4xl" style={{ color: "hsl(0, 0%, 8%)" }}>Create Account</h2>
@@ -85,18 +85,10 @@ export default function Signup() {
                                 <Input className="rounded-xl" style={{ background: "hsl(0, 0%, 8%)", color: "#fff", cursor: "pointer" }} type="submit" value={loading ? 'Signing up...' : 'Sign Up'} />
                             </div>
 
+                            <span className="text-center">or</span>
+
                             <div className="w-full flex justify-between">
-                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }} onClick={signInWithApple}>
-                                    <Image
-                                        src={'/apple.png'}
-                                        alt="Hero"
-                                        width={20}
-                                        height={20}
-                                        className="rounded-xl"
-                                    />
-                                    Apple
-                                </Button>
-                                <Button variant="outline" className="rounded-xl" style={{ width: '49%', cursor: "pointer" }} onClick={signInWithGoogle}>
+                                <Button variant="outline" className="rounded-xl" style={{ width: '100%', cursor: "pointer" }} onClick={signInWithGoogle}>
                                     <Image
                                         src={'/google.png'}
                                         alt="Hero"
@@ -104,7 +96,7 @@ export default function Signup() {
                                         height={20}
                                         className="rounded-xl"
                                     />
-                                    Google
+                                    Create Account With Google
                                 </Button>
                             </div>
                         </form>

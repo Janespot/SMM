@@ -1,6 +1,6 @@
-// lib/auth.ts
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-import { supabase } from "@/lib/supabaseClient";
+const supabase = createClientComponentClient();
 
 export async function signUp(email: string, password: string, name: string) {
   const { data, error } = await supabase.auth.signUp({
@@ -19,20 +19,24 @@ export async function signUp(email: string, password: string, name: string) {
 
 // Google OAuth
 export const signInWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
+  const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-        redirectTo: `${window.location.origin}/profile`, // or wherever
+        redirectTo: `${window.location.origin}/auth/callback`,
     },
-    });
+  });
+
+  if (error) {
+    console.error('Google sign-in error:', error.message);
+  }
 };
 
-// Apple OAuth
-export const signInWithApple = async () => {
-    await supabase.auth.signInWithOAuth({
-    provider: "apple",
-    options: {
-        redirectTo: `${window.location.origin}/profile`,
-    },
-    });
-};
+// // Apple OAuth
+// export const signInWithApple = async () => {
+//     await supabase.auth.signInWithOAuth({
+//     provider: "apple",
+//     options: {
+//         redirectTo: `${window.location.origin}/profile`,
+//     },
+//     });
+// };
