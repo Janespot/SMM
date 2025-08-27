@@ -14,7 +14,23 @@ import { memo, useCallback, useEffect, useState } from "react";
 import links from "@/assets/json/social-media.json";
 import { Switch } from "../ui/switch";
 
-const SocialLinkItem = memo(({ link, index, onPlatformChange, onUrlChange, onPrivacyChange, onRemove, canRemove }) => {
+interface SocialLink {
+  platform: string;
+  url: string;
+  privacy: boolean;
+}
+
+interface SocialLinkItemProps {
+  link: SocialLink;
+  index: number;
+  onPlatformChange: (index: number, platform: string) => void;
+  onUrlChange: (index: number, url: string) => void;
+  onPrivacyChange: (index: number, privacy: boolean) => void;
+  onRemove: (index: number) => void;
+  canRemove: boolean;
+}
+
+const SocialLinkItem = memo(({ link, index, onPlatformChange, onUrlChange, onPrivacyChange, onRemove, canRemove }: SocialLinkItemProps) => {
     const [privacy, setPrivacy] = useState(link.privacy);
 
     // useEffect(() => {
@@ -78,12 +94,16 @@ export default function UpdateProfile({ initialDataProfile, initialDataSocial } 
         profile: initialDataProfile.profile || "",
         background: initialDataProfile.background || "",
         username: initialDataProfile.username || "",
-        about: initialDataProfile.about || ""
+        about: initialDataProfile.about || "",
+        country: initialDataProfile.country || "",
+        city: initialDataProfile.city || ""
     } : {
         profile: "",
         background: "",
         username: "",
-        about: ""
+        about: "",
+        country: "",
+        city: ""
     });
 
     const [contact, setContact] = useState<any>(initialDataProfile ? {
@@ -97,16 +117,31 @@ export default function UpdateProfile({ initialDataProfile, initialDataSocial } 
     
 
     // console.log("pf data2",profile, contact, sociallinks, initialDataProfile, initialDataSocial);
-    const updatePlatform = useCallback((index, platform) => {
-        setSociallinks(prev => {
+    const updatePlatform = useCallback((index: number, platform: any) => {
+        setSociallinks((prev: any) => {
             const updated = [...prev];
             updated[index] = { ...updated[index], platform };
             return updated;
         });
     }, []);
 
-    const updateUrl = useCallback((index, url) => {
-        setSociallinks(prev => {
+    const validateUrl = (value: string) => {
+        try {
+            new URL(value);
+            return true;
+        } catch {
+            return false;
+        }
+    };
+
+    const updateUrl = useCallback((index: number, url: string) => {
+        if (!validateUrl(url)) {
+            // Optionally: ignore invalid URLs or handle differently
+            console.warn("Invalid URL:", url);
+            return; // don't update state with invalid URL
+        }
+        
+        setSociallinks((prev: any) => {
             const updated = [...prev];
             updated[index] = { ...updated[index], url };
             return updated;
@@ -114,7 +149,7 @@ export default function UpdateProfile({ initialDataProfile, initialDataSocial } 
     }, []);
 
     const updatePrivacy = (index: number, value: boolean) => {
-        setSociallinks((prev) => {
+        setSociallinks((prev: any) => {
             const updated = [...prev];
             updated[index] = {
             ...updated[index],
@@ -130,7 +165,7 @@ export default function UpdateProfile({ initialDataProfile, initialDataSocial } 
     };
 
     const handleRemove = (indexToRemove: number) => {
-        setSociallinks(sociallinks.filter((_, i) => i !== indexToRemove));
+        setSociallinks(sociallinks.filter((_: any, i: number) => i !== indexToRemove));
     };
 
     const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -251,6 +286,40 @@ export default function UpdateProfile({ initialDataProfile, initialDataSocial } 
                                                 }
                                             />
                                         </div>
+                                    </div>
+
+                                    <div className="flex flex-col">
+                                        <Label className="text-2xl" htmlFor="profile.country">Country</Label>
+                                        <Input 
+                                            className="rounded-md text-[#777777]" 
+                                            type="text" 
+                                            name="profile.country" 
+                                            placeholder="Enter Country" 
+                                            value={profile.country}
+                                            onChange={e => 
+                                                setProfile((prev: any) => ({
+                                                    ...prev,
+                                                    country: e.target.value,
+                                                }))
+                                            }
+                                        />
+                                    </div>
+
+                                    <div className="flex flex-col">
+                                        <Label className="text-2xl" htmlFor="profile.city">City</Label>
+                                        <Input 
+                                            className="rounded-md text-[#777777]" 
+                                            type="text" 
+                                            name="profile.city" 
+                                            placeholder="Enter City" 
+                                            value={profile.city}
+                                            onChange={e => 
+                                                setProfile((prev: any) => ({
+                                                    ...prev,
+                                                    city: e.target.value,
+                                                }))
+                                            }
+                                        />
                                     </div>
                                 </Accordion.Panel>
                             </Accordion.Item>

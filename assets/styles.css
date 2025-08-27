@@ -96,11 +96,11 @@ ul a {
     padding: .8rem;
 }
 
-li:active, li:hover {
+li:not(.empty):active, li:not(.empty):hover {
      background-color: var(--green);
 }
 
-li:active a, li:hover a {
+li:not(.empty):active a, li:not(.empty):hover a {
     color: var(--grey-900);
  }
 

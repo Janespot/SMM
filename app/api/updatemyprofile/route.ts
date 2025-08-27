@@ -25,9 +25,13 @@ export async function POST(req:Request) {
         .insert([myProfileData])
         .select()
         
+        if (profileError || !profile?.[0]?.id) {
+        throw new Error("Failed to insert profile or retrieve ID");
+        }
+
         const mySocialData = profiledata.sociallinks.map((link: any) => ({
             ...link,
-            user_id: userId,
+            profile_id: profile[0]?.id,
         }))
         const { data: social, error: socialError } = await supabase
         .from('sociallinks')
