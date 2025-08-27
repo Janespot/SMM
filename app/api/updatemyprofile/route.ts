@@ -2,7 +2,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
 import { cookies } from 'next/headers';
 
-export async function POST(req:Request, res: NextResponse) {
+export async function POST(req:Request) {
     try {
         const supabase = await createServerComponentClient({ cookies });
 

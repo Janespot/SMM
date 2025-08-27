@@ -12,8 +12,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Accordion } from "@mantine/core";
 import { memo, useCallback, useEffect, useState } from "react";
 import links from "@/assets/json/social-media.json";
+import { Switch } from "../ui/switch";
 
-const SocialLinkItem = memo(({ link, index, onPlatformChange, onUrlChange, onRemove, canRemove }) => {
+const SocialLinkItem = memo(({ link, index, onPlatformChange, onUrlChange, onPrivacyChange, onRemove, canRemove }) => {
+    const [privacy, setPrivacy] = useState(link.privacy);
+
+    // useEffect(() => {
+    //     console.log("privacy", privacy)
+    // }, [privacy, setPrivacy])
+
     return (
         <>
             <div className="flex flex-col gap-4">
@@ -22,7 +29,7 @@ const SocialLinkItem = memo(({ link, index, onPlatformChange, onUrlChange, onRem
                     value={link?.platform}
                     onValueChange={value => onPlatformChange(index, value)}
                 >
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className="w-full text-[#777777] bg-white">
                         <SelectValue placeholder="Social Media" />
                     </SelectTrigger>
                     <SelectContent>
@@ -36,7 +43,7 @@ const SocialLinkItem = memo(({ link, index, onPlatformChange, onUrlChange, onRem
             <div className="flex flex-col">
                 <Label className="text-2xl" htmlFor="url[]">Link</Label>
                 <Input 
-                    className="rounded-md" 
+                    className="rounded-md text-[#777777] bg-white" 
                     type="text" 
                     name="url[]" 
                     placeholder="https://www.example.com" 
@@ -45,37 +52,51 @@ const SocialLinkItem = memo(({ link, index, onPlatformChange, onUrlChange, onRem
                 />
             </div>
             
-            {/* {/* Remove Button  */}
-            {canRemove && (
-                <button
-                    type="button"
-                    onClick={() => onRemove(index)}
-                    className="text-sm border-2 text-[#990033] border-[#990033] rounded-md"
-                >
-                    Remove
-                </button>
-            )}
+            <div className="flex justify-between">
+                <div className="flex items-center justify-start w-2/3 gap-1">
+                    <Switch id={`privacy-${index}`} checked={link.privacy} className="data-[state=unchecked]:bg-gray-300 data-[state=checked]:bg-blue-500 cursor-pointer" onCheckedChange={checked => onPrivacyChange(index, checked)} />
+                    <Label htmlFor="privacy" className="text-2xl">Make Private</Label>
+                </div>
+                
+                {/* {/* Remove Button  */}
+                {canRemove && (
+                    <button
+                        type="button"
+                        onClick={() => onRemove(index)}
+                        className="text-sm border-2 text-[#990033] border-[#990033] rounded-md w-1/3 bg-white cursor-pointer"
+                    >
+                        Remove
+                    </button>
+                )}
+            </div>
         </>
     )
 })
 
-export default function UpdateProfile() {
-    const [profile, setProfile] = useState<any>({
+export default function UpdateProfile({ initialDataProfile, initialDataSocial } : any) {
+    const [profile, setProfile] = useState<any>(initialDataProfile ? {
+        profile: initialDataProfile.profile || "",
+        background: initialDataProfile.background || "",
+        username: initialDataProfile.username || "",
+        about: initialDataProfile.about || ""
+    } : {
         profile: "",
         background: "",
-        // fullname: "",
         username: "",
         about: ""
     });
 
-    const [contact, setContact] = useState<any>({
-            // email: "",
+    const [contact, setContact] = useState<any>(initialDataProfile ? {
+        phonenumber: initialDataProfile.phonenumber || "",
+    } : {
             phonenumber: ""
     });
-    const [sociallinks, setSociallinks] = useState([
-        {platform: "", url: ""}
+    const [sociallinks, setSociallinks] = useState(initialDataSocial || [
+        {platform: "", url: "", privacy: false}
     ]);
     
+
+    // console.log("pf data2",profile, contact, sociallinks, initialDataProfile, initialDataSocial);
     const updatePlatform = useCallback((index, platform) => {
         setSociallinks(prev => {
             const updated = [...prev];
@@ -91,6 +112,17 @@ export default function UpdateProfile() {
             return updated;
         });
     }, []);
+
+    const updatePrivacy = (index: number, value: boolean) => {
+        setSociallinks((prev) => {
+            const updated = [...prev];
+            updated[index] = {
+            ...updated[index],
+            privacy: value,
+            };
+            return updated;
+        });
+    };
 
     // Add new empty set
     const handleAdd = () => {
@@ -171,7 +203,7 @@ export default function UpdateProfile() {
                                         <div className="flex flex-col">
                                             <Label className="text-2xl" htmlFor="profile.fullname">Full Name</Label>
                                             <Input 
-                                                className="rounded-md" 
+                                                className="rounded-md text-[#777777]" 
                                                 type="text" 
                                                 name="profile.fullname" 
                                                 placeholder="Enter Full Name" 
@@ -190,7 +222,7 @@ export default function UpdateProfile() {
                                         <div className="flex flex-col">
                                             <Label className="text-2xl" htmlFor="profile.username">Username</Label>
                                             <Input 
-                                                className="rounded-md" 
+                                                className="rounded-md text-[#777777]" 
                                                 type="text" 
                                                 name="profile.username" 
                                                 placeholder="Enter Username" 
@@ -207,7 +239,7 @@ export default function UpdateProfile() {
                                         <div className="flex flex-col">
                                             <Label className="text-2xl" htmlFor="profile.about">About</Label>
                                             <Textarea 
-                                                className="rounded-md" 
+                                                className="rounded-md text-[#777777]" 
                                                 name="profile.about" 
                                                 placeholder="Enter short description about yourself" 
                                                 value={profile.about}
@@ -230,7 +262,7 @@ export default function UpdateProfile() {
                                         <div className="flex flex-col">
                                             <Label className="text-2xl" htmlFor="email">Email Address</Label>
                                             <Input 
-                                                className="rounded-md" 
+                                                className="rounded-md text-[#777777]" 
                                                 type="email" 
                                                 name="email" 
                                                 placeholder="Enter Email Address" 
@@ -249,7 +281,7 @@ export default function UpdateProfile() {
                                         <div className="flex flex-col">
                                             <Label className="text-2xl" htmlFor="phonenumber">Phone Number</Label>
                                             <Input 
-                                                className="rounded-md" 
+                                                className="rounded-md text-[#777777]" 
                                                 type="text" 
                                                 name="phonenumber" 
                                                 placeholder="Enter Phone Number" 
@@ -271,16 +303,17 @@ export default function UpdateProfile() {
                                 <Accordion.Panel>
                                     <div className="space-y-6">
                                         {sociallinks.map((link: any, index: number) => (
-                                            <div key={index} className="flex flex-col gap-4">                                                
+                                            <Card key={index} className="flex flex-col gap-4 p-2 shadow-none bg-[#f2f2f2]">                                                
                                                 <SocialLinkItem
                                                     link={link}
                                                     index={index}
                                                     onPlatformChange={updatePlatform}
+                                                    onPrivacyChange={updatePrivacy}
                                                     onUrlChange={updateUrl}
                                                     onRemove={handleRemove}
                                                     canRemove={sociallinks.length > 1}
                                                 />
-                                            </div>
+                                            </Card>
                                         ))}
 
                                         {/* {/* Add Button  */}
