@@ -1,0 +1,202 @@
+[
+    {
+        "value": "igm",
+        "label": "Instagram"
+    },
+    {
+        "value": "fbk",
+        "label": "Facebook"
+    },
+    {
+        "value": "ttk",
+        "label": "TikTok"
+    },
+    {
+        "value": "yte",
+        "label": "YouTube"
+    },
+    {
+        "value": "tth",
+        "label": "Twitch"
+    },
+    {
+        "value": "tlr",
+        "label": "Triller"
+    },
+    {
+        "value": "vmo",
+        "label": "Vimeo"
+    },
+    {
+        "value": "rbe",
+        "label": "Rumble"
+    },
+    {
+        "value": "dun",
+        "label": "Douban"
+    },
+    {
+        "value": "igr",
+        "label": "Imgur"
+    },
+    {
+        "value": "23s",
+        "label": "23snaps"
+    },
+    {
+        "value": "cyl",
+        "label": "Crunchyroll"
+    },
+    {
+        "value": "s-o",
+        "label": "Sina Weibo"
+    },
+    {
+        "value": "m-s",
+        "label": "Microsoft Teams"
+    },
+    {
+        "value": "eee",
+        "label": "eBee"
+    },
+    {
+        "value": "s32",
+        "label": "Stage 32"
+    },
+    {
+        "value": "ttr",
+        "label": "Twitter"
+    },
+    {
+        "value": "dcd",
+        "label": "Discord"
+    },
+    {
+        "value": "rdt",
+        "label": "Reddit"
+    },
+    {
+        "value": "tbr",
+        "label": "Tumblr"
+    },
+    {
+        "value": "che",
+        "label": "Clubhouse"
+    },
+    {
+        "value": "vk",
+        "label": "VK"
+    },
+    {
+        "value": "mdm",
+        "label": "Medium"
+    },
+    {
+        "value": "mewe",
+        "label": "MeWe"
+    },
+    {
+        "value": "dspa",
+        "label": "Diaspora"
+    },
+    {
+        "value": "csg",
+        "label": "CouchSurfing"
+    },
+    {
+        "value": "mixi",
+        "label": "Mixi"
+    },
+    {
+        "value": "yubo",
+        "label": "Yubo"
+    },
+    {
+        "value": "bu-ta",
+        "label": "Baidu Tieba"
+    },
+    {
+        "value": "meetup",
+        "label": "Meetup"
+    },
+    {
+        "value": "myspace",
+        "label": "Myspace"
+    },
+    {
+        "value": "qzone",
+        "label": "Qzone"
+    },
+    {
+        "value": "wtapp",
+        "label": "WhatsApp"
+    },
+    {
+        "value": "snap",
+        "label": "Snapchat"
+    },
+    {
+        "value": "viber",
+        "label": "Viber"
+    },
+    {
+        "value": "skype",
+        "label": "Skype"
+    },
+    {
+        "value": "wechat",
+        "label": "WeChat"
+    },
+    {
+        "value": "line",
+        "label": "Line"
+    },
+    {
+        "value": "10ctqq",
+        "label": "Tencent QQ"
+    },
+    {
+        "value": "bhce",
+        "label": "Behance"
+    },
+    {
+        "value": "drbl",
+        "label": "Dribble"
+    },
+    {
+        "value": "dvtart",
+        "label": "DeviantArt"
+    },
+    {
+        "value": "wttpd",
+        "label": "Wattpad"
+    },
+    {
+        "value": "instr",
+        "label": "Instructables"
+    },
+    {
+        "value": "st-ov",
+        "label": "Stack Overflow"
+    },
+    {
+        "value": "sp-lv",
+        "label": "Spotify Live"
+    },
+    {
+        "value": "sd-cld",
+        "label": "SoundCloud"
+    },
+    {
+        "value": "rvr-nt",
+        "label": "ReverbNation"
+    },
+    {
+        "value": "ptr",
+        "label": "Patreon"
+    },
+    {
+        "value": "untappd",
+        "label": "Untappd"
+    }
+]

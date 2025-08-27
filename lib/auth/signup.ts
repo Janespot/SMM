@@ -40,3 +40,7 @@ export const signInWithGoogle = async () => {
 //     },
 //     });
 // };
+
+export const handleSignOut = async () => {
+  await supabase.auth.signOut()
+}
