@@ -6,20 +6,20 @@
     --grey-900: hsl(0, 0%, 8%);
 }
 
-@font-face {
+/* @font-face {
     font-family: Inter-Bold;
     src: url(/assets/fonts/static/Inter-Bold.ttf)
-}
+} */
 
 @font-face {
     font-family: Inter-Regular;
     src: url(/assets/fonts/static/Inter-Regular.ttf)
 }
 
-@font-face {
+/* @font-face {
     font-family: Inter-SemiBold;
     src: url(/assets/fonts/static/Inter-SemiBold.ttf)
-}
+} */
 
 * {
     box-sizing: border-box;
@@ -29,7 +29,7 @@
 body {
     background-color: var(--grey-900);
     color: var(--white);
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,7 +56,7 @@ img {
 }
 
 h1 {
-    font-family: "Inter-SemiBold";
+    font-family: "Inter-Regular";
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
 }
@@ -77,7 +77,7 @@ ul {
     width: 100%;
 }
 
-ul li {
+ul li:not(.empty) {
     width: 100%;
     list-style-type: none;
     text-align: center;
@@ -88,7 +88,7 @@ ul li {
 }
 
 ul a {
-    font-family: "Inter-SemiBold";
+    font-family: "Inter-Regular";
     text-decoration: none;
     color: var(--white);
     display: flex;

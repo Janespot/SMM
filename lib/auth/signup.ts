@@ -1,4 +1,5 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { redirect } from 'next/navigation';
 
 const supabase = createClientComponentClient();
 
@@ -43,4 +44,6 @@ export const signInWithGoogle = async () => {
 
 export const handleSignOut = async () => {
   await supabase.auth.signOut()
+
+  redirect("/signin");
 }

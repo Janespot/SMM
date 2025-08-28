@@ -1,11 +1,8 @@
 import '@mantine/core/styles.css';
-import './globals.css';
+import '../globals.css';
 
 import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core';
 import { Dongle } from "next/font/google";
-import Nav from '@/components/dashboard/Nav';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
 
 const dongle = Dongle({
   subsets: ["latin"],
@@ -17,19 +14,11 @@ export const metadata = {
   description: 'Social Media Mangement',
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = createServerComponentClient({ cookies })
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  const navsession = session ? true : false;
-
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
@@ -61,10 +50,7 @@ export default async function RootLayout({
               xl: "12px",
             },
           }}
-        >
-          <Nav session={navsession} />
-          {children}
-        </MantineProvider>
+        >{children}</MantineProvider>
       </body>
     </html>
   );
