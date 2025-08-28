@@ -5,13 +5,11 @@ import platforms from "@/assets/json/social-media.json";
 import UserProfile from "@/components/site/user/Profile";
 
 type Props = {
-    params: {
-        id: string
-    }
-};
+  params: Promise<{ id: string }>
+}
 
 export default async function Home({ params }: Props) {
-    const {id} = params;
+    const {id} = await params;
     const supabase = createServerComponentClient({ cookies })
 
     const {
